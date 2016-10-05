@@ -17,13 +17,13 @@ This is a **JVM-based** tail that is integrated with a Kafka Producer. It posts 
  * Perhaps you already have a JVM running on your server.
 3. Standardize your integration 
  * One set of instructions across all platforms. 
- * "One jar to rule them all."
-## Building
+ * **One jar to rule them all.**
+### Building
 Building a jar with it's dependencies embedded requires a special Maven invocation.
 ```
 mvn compile assembly:single
 ```
-## Kafka Producer Properties File
+### Kafka Producer Properties File
 A typical Kafka Producer properties file might read:
 ```properties
 bootstrap.servers=a.domain.com:9092
