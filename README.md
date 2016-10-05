@@ -1,6 +1,5 @@
 # Kafka Tailer
-=========================
-## Tail any text file and stream to a Kafka queue. 
+## Tail any text file and stream to a Kafka topic. 
 Usage:
 ```
 java -classpath KafkaTailer-0.1-jar-with-dependencies.jar net.johnpage.kafka.KafkaTailer a-log.log kafka-producer.properties a-topic
