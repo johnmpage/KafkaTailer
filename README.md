@@ -4,7 +4,7 @@
 
 Usage:
 ```
-java -classpath KafkaTailer-0.1-jar-with-dependencies.jar net.johnpage.kafka.KafkaTailer a-log.log kafka-producer.properties a-topic
+java -classpath KafkaTailer-1.0-jar-with-dependencies.jar net.johnpage.kafka.KafkaTailer a-log.log kafka-producer.properties a-topic
 ```
 This is a **JVM-based** tail that is integrated with a Kafka Producer. It posts lines as they are added to a remote server from your file.  
 Operates much like the `tail` command. Useful when outside of the *nix world. It does not maintain a lock on the file and allows for log rotations.
