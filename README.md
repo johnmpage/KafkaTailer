@@ -40,6 +40,10 @@ ssl.truststore.password=apassword
 ```
 A complete reference to the producer properties is [here](https://kafka.apache.org/documentation.html#producerconfigs).
 
+###Command-line Options
+ * **startFromBeginning** : Start sending lines from the beginning of the file. 
+ * **relinquishLock** : Between file reads, relinquish the lock on the file. 
+
 ### Built using:
  * [Apache Commons IO Tailer 2.5](https://commons.apache.org/proper/commons-io/)
  * [Apache Kafka Producer 0.10](https://kafka.apache.org/)
