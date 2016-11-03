@@ -26,6 +26,22 @@ public class KafkaTailer {
         printUsageInstructions();
         return;
       }
+      boolean startTailingFromEnd = true;
+      boolean relinquishLockBetweenChunks = false;
+      if(args.length>3 && args[3]!=null ){
+        if("startFromBeginning".equals(args[3])) {
+          startTailingFromEnd = false;
+        }else if("relinquishLock".equals(args[3])){
+          relinquishLockBetweenChunks = true;
+        }
+      }
+      if(args.length>4 && args[4]!=null ){
+        if("startFromBeginning".equals(args[4])) {
+          startTailingFromEnd = false;
+        }else if("relinquishLock".equals(args[4])){
+          relinquishLockBetweenChunks = true;
+        }
+      }
       File file = new File(filePath);
       System.out.println("KafkaTailer: File = "+file.getAbsolutePath());
       File propertiesFile =new File(producerPropertiesPath);
@@ -38,7 +54,8 @@ public class KafkaTailer {
       Producer producer = ProducerFactory.getInstance();
       connector.setProducer(producer);
       connector.setTopic(kafkaTopic);
-      tailer = new Tailer(file, connector, 1000);
+      int delayInMillisecondsBetweenChecks = 1000;
+      tailer = new Tailer(file, connector, delayInMillisecondsBetweenChecks, startTailingFromEnd, relinquishLockBetweenChunks);
       Thread thread = new Thread(tailer);
       //thread.setDaemon(true);
       Runtime.getRuntime().addShutdownHook(new Thread(){public void run(){tailer.stop();}});
@@ -58,6 +75,6 @@ public class KafkaTailer {
     return tailer;
   }
   private static void printUsageInstructions(){
-    System.out.println("Usage: java -classpath KafkaTailer-0.1-jar-with-dependencies.jar net.johnpage.kafka.KafkaTailer a-log.log kafka-producer.properties a-topic");
+    System.out.println("Usage: java -classpath KafkaTailer-1.0-jar-with-dependencies.jar net.johnpage.kafka.KafkaTailer a-log.log kafka-producer.properties a-topic [startFromBeginning] [relinquishLock]");
   }
 }

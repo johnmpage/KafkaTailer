@@ -26,7 +26,7 @@ public class KafkaTailerTest {
     }
     MockKafkaProducer mockKafkaProducer = new MockKafkaProducer(producerProperties);
     ProducerFactory.setInstance(mockKafkaProducer);
-    String[] argumentArray = {"src/test/resources/KafkaTailer.txt","src/test/resources/KafkaTailer.properties","test-topic"};
+    String[] argumentArray = {"src/test/resources/KafkaTailer.txt","src/test/resources/KafkaTailer.properties","test-topic","startFromBeginning"};
     KafkaTailer.main(argumentArray);
     try {
       Thread.sleep(500);
