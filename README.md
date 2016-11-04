@@ -65,7 +65,7 @@ new KafkaProducer(Properties properties)
 Version-appropriate properties will need to be used.
 
 ### Building
-Yopu may choose to build KafkaTailer yourself, either to embed a different version of the Kafka client libraries or for security reasons. If you you choose to build KafkaTailer yourself, a jar with it's dependencies embedded requires a special Maven invocation.
+You may choose to build KafkaTailer yourself, either to embed a different version of the Kafka client libraries or for security reasons. If you you choose to build KafkaTailer yourself, a jar with it's dependencies embedded requires a special Maven invocation.
 ```
 mvn compile assembly:single
 ```
