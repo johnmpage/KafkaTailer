@@ -6,8 +6,7 @@ Usage:
 ```
 java -classpath KafkaTailer-1.0-jar-with-dependencies.jar net.johnpage.kafka.KafkaTailer a-log.log kafka-producer.properties a-topic
 ```
-This is a **JVM-based** tail that is integrated with a Kafka Producer. It posts lines as they are added to a remote server from your file.  
-Operates much like the `tail` command. Useful when outside of the *nix world. It does not maintain a lock on the file and allows for log rotations.
+This is a **JVM-based** tail that is integrated with a Kafka Producer. It posts lines as they are added to a remote server from your file.  KafkaTailer operates much like the `tail` command. Useful when outside of the *nix world. It does not maintain a lock on the file and allows for log rotations.
 
 ### Why would you use this when *nix has `tail`? 
 1. Universal
@@ -22,12 +21,6 @@ Operates much like the `tail` command. Useful when outside of the *nix world. It
  * One set of instructions across all platforms.
  
 
-### Building
-Building a jar with it's dependencies embedded requires a special Maven invocation.
-```
-mvn compile assembly:single
-```
-
 ### Kafka Producer Properties File
 A typical Kafka Producer properties file might read:
 ```properties
@@ -41,8 +34,18 @@ ssl.truststore.password=apassword
 A complete reference to the producer properties is [here](https://kafka.apache.org/documentation.html#producerconfigs).
 
 ###Command-line Options
- * **startFromBeginning** : Start sending lines from the beginning of the file. 
+ * **startFromBeginning** : Start sending lines from the beginning of the file. The default behavior is to start from the end of the file only sending new lines as they are added to the watched file.
  * **relinquishLock** : Between file reads, relinquish the lock on the file. 
+ The order of the arguments is important. Here is an example of usage:
+ '''
+java -classpath KafkaTailer-1.0-jar-with-dependencies.jar net.johnpage.kafka.KafkaTailer a-log.log kafka-producer.properties a-topic startFromBeginning relinquishLock
+ '''
+ 
+### Log Rotation
+KafkaTailer works with Log Rotation when it is done in what many would call the "proper" way. 
+ * The base log file is copied to a dated file.
+ * The log file is not deleted or moved. The content within it is simply removed, leaving it blank.
+The logging mechanism of your application should be reviewed and or tested to be certain that KafkaTailer will work continuously for you. Currently, if KafkaTailer attempts to read a file and it does not exist, KafkaTailer will quietly shutdown. 
 
 ### Built using:
  * [Apache Commons IO Tailer 2.5](https://commons.apache.org/proper/commons-io/)
@@ -54,3 +57,11 @@ Tested with Kafka 0.10. Should be backwards compatible with 0.90 and 0.82. These
 new KafkaProducer(Properties properties) 
 ```
 Version-appropriate properties will need to be used.
+
+### Building
+Yopu may choose to build KafkaTailer yourself, either to embed a different version of the Kafka client libraries or for security reasons. If you you choose to build KafkaTailer yourself, a jar with it's dependencies embedded requires a special Maven invocation.
+```
+mvn compile assembly:single
+```
+
+
