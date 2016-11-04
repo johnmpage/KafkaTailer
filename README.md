@@ -37,9 +37,9 @@ A complete reference to the producer properties is [here](https://kafka.apache.o
  * **startFromBeginning** : Start sending lines from the beginning of the file. The default behavior is to start from the end of the file only sending new lines as they are added to the watched file.
  * **relinquishLock** : Between file reads, relinquish the lock on the file. 
  The order of the arguments is important. Here is an example of usage:
- '''
+```
 java -classpath KafkaTailer-1.0-jar-with-dependencies.jar net.johnpage.kafka.KafkaTailer a-log.log kafka-producer.properties a-topic startFromBeginning relinquishLock
- '''
+```
  
 ### Log Rotation
 KafkaTailer works with Log Rotation when it is done in what many would call the "proper" way. 
