@@ -10,15 +10,15 @@ This is a **JVM-based** tail that is integrated with a Kafka Producer. It posts 
 
 ### Why would you use this when *nix has `tail`? 
 1. Universal
-* Windows
-* Linux
-* Unix
-* MacOS
+ * Windows
+ * Linux
+ * Unix
+ * MacOS
 2. JVM-based.
-* The reference Kafka Producer by the core Kafka team is written for the JVM.
-* Perhaps you already have a JVM running on your server.
+ * The reference Kafka Producer by the core Kafka team is written for the JVM.
+ * Perhaps you already have a JVM running on your server.
 3. Standardize your integration 
-* One set of instructions across all platforms.
+ * One set of instructions across all platforms.
 
 
 ### Kafka Producer Properties File
