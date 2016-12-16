@@ -59,16 +59,16 @@ java -classpath KafkaTailer-2.0-jar-with-dependencies.jar net.johnpage.kafka.Kaf
 java -classpath KafkaTailer-2.0-jar-with-dependencies.jar net.johnpage.kafka.KafkaTailer filePath=C:\\logs\\a.log producerPropertiesPath=C:\\kafka\\kafka-producer.properties kafkaTopic=a-topic relinquishLock=true
 ```
 
-###A note on Log Rotation
+###A Note on Log Rotation
 Typically, software applications rotate logs in one of two styles:
 
-1. Application (ie. Apache HTTPD) always writes to a single file:
+##Single File Log Rotation (Apache HTTPD):
 * The base log file is copied over to a new, dated file.
-* The base log file is not deleted or moved. The content within it is removed, leaving it blank.
-* New log statements are written to the same file.
+* The content in the base log file is removed, leaving it blank.
+* New log statements continue to be written to the base log file.
 
-2. Application (ie. IIS) generates a new file with each log rotation:
-* A new file is created
+##New File Log Rotation (IIS):
+* A new log file is created.
 * New log statements are written to the new log file.
 
 The log rotation mechanism of your application should be reviewed and or tested to be certain that KafkaTailer will work continuously for you. 
