@@ -8,7 +8,7 @@ Usage:
 java -classpath KafkaTailer-2.0-jar-with-dependencies.jar net.johnpage.kafka.KafkaTailer directoryPath=C:\\iis-logs\\W3SVC1\\ producerPropertiesPath=C:\\iis-logs\\kafka-producer.properties kafkaTopic=a-topic
 ```
 
-### New in Version 2.0
+## New in Version 2.0
 * Watch a log **directory**, not a single file. Bridge IIS to Kafka!
 * Unordered, name-based invocation arguments
 
@@ -18,15 +18,15 @@ KafkaTailer can operates much like the `tail` command. Useful when outside of th
 
 
 
-### How do I stream logs from IIS? 
+## How do I stream logs from IIS? 
 Using KafkaTailer you can stream logs from Microsoft's IIS server to a remote Kafka topic.
 IIS simply needs to have logging enabled in a dedicated directory. KafkaTailer will monitor the logging directory, detect new logging files as they are generated(Hourly, Daily, or Weekly), and send the latest log out across the network.
 
-### JVM-based.
+## JVM-based.
 * Works on all OSs
 * KafkaTailer uses the reference Kafka Producer written by the core Kafka team.
 
-### Kafka Producer Properties File
+## Kafka Producer Properties File
 Because KafkaTailer gives you full access to every Producer configuration parameter as the developers intended;  it provides you with the full power of the latest Kafka Producer.  A typical Kafka Producer properties file might read:
 
 ```properties
@@ -40,7 +40,7 @@ ssl.truststore.password=apassword
 
 A complete reference to the producer properties is [here](https://kafka.apache.org/documentation.html#producerconfigs).
 
-###Command-line Arguments
+##Command-line Arguments
 * **directoryPath** or **filePath**: Required. One of these parameters must be present.
 * **producerPropertiesPath** : Required.
 * **kafkaTopic** : Required.
@@ -59,26 +59,26 @@ java -classpath KafkaTailer-2.0-jar-with-dependencies.jar net.johnpage.kafka.Kaf
 java -classpath KafkaTailer-2.0-jar-with-dependencies.jar net.johnpage.kafka.KafkaTailer filePath=C:\\logs\\a.log producerPropertiesPath=C:\\kafka\\kafka-producer.properties kafkaTopic=a-topic relinquishLock=true
 ```
 
-###A Note on Log Rotation
+##A Note on Log Rotation
 Typically, software applications rotate logs in one of two styles:
 
-##Single File Log Rotation (Apache HTTPD):
+###Single File Log Rotation (Apache HTTPD):
 * The base log file is copied over to a new, dated file.
 * The content in the base log file is removed, leaving it blank.
 * New log statements continue to be written to the base log file.
 
-##New File Log Rotation (IIS):
+###New File Log Rotation (IIS):
 * A new log file is created.
 * New log statements are written to the new log file.
 
 The log rotation mechanism of your application should be reviewed and or tested to be certain that KafkaTailer will work continuously for you. 
 Currently, if KafkaTailer attempts to read a file and it does not exist, KafkaTailer will quietly shutdown. 
 
-### Built using:
+## Built using:
 * [Apache Commons IO Tailer 2.5](https://commons.apache.org/proper/commons-io/)
 * [Apache Kafka Producer 0.10](https://kafka.apache.org/)
 
-### Kafka Version
+## Kafka Version
 Tested with Kafka 0.10. Should be backwards compatible with 0.90 and 0.82. These 3 versions rely on the following initialization of the Producer:
 
 ```java
@@ -87,7 +87,7 @@ new KafkaProducer(Properties properties)
 
 Version-appropriate properties will need to be used.
 
-### Building
+## Building
 You may choose to build KafkaTailer yourself, either to embed a different version of the Kafka client libraries or for security reasons. If you you choose to build KafkaTailer yourself, a jar with it's dependencies embedded requires a special Maven invocation.
 
 ```
