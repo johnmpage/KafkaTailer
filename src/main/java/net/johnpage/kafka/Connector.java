@@ -12,7 +12,6 @@ public class Connector extends TailerListenerAdapter {
   Producer producer;
   String topic;
   public void handle(String string) {
-    LOGGER.debug("string={}",string);
     ProducerRecord<String, String> producerRecord = new ProducerRecord(topic, string);
     producer.send(producerRecord);
   }
@@ -21,5 +20,13 @@ public class Connector extends TailerListenerAdapter {
   }
   public void setTopic(String topic) {
     this.topic = topic;
+  }
+
+  @Override
+  public String toString() {
+    return "Connector{" +
+      "producer=" + producer +
+      ", topic='" + topic + '\'' +
+      '}';
   }
 }
