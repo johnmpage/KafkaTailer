@@ -5,11 +5,12 @@
 Usage:
 
 ```
-java -classpath kafka-tailer-2.0-jar-with-dependencies.jar net.johnpage.kafka.KafkaTailer directoryPath=C:\\iis-logs\\W3SVC1\\ producerPropertiesPath=C:\\iis-logs\\kafka-producer.properties kafkaTopic=a-topic
+java -classpath kafka-tailer-2.1-jar-with-dependencies.jar net.johnpage.kafka.KafkaTailer directoryPath=C:\\iis-logs\\W3SVC1\\ producerPropertiesPath=C:\\iis-logs\\kafka-producer.properties kafkaTopic=a-topic
 ```
 
-## New in Version 2.0
+## New in Version 2.1
 * Watch a log **directory**. Bridge IIS to Kafka!
+* Skeleton of a Windows Service included. 
 * Unordered, name-based invocation arguments
 
 This is a **JVM-based** tail that is integrated with a Kafka Producer.  
@@ -48,13 +49,13 @@ A complete reference to the producer properties is [here](https://kafka.apache.o
 The order of the arguments is not important. Here is an example of usage with the optional arguments:
 
 ```
-java -classpath kafka-tailer-2.0-jar-with-dependencies.jar net.johnpage.kafka.KafkaTailer directoryPath=C:\\iis-logs\\W3SVC1\\ producerPropertiesPath=C:\\iis-logs\\kafka-producer.properties kafkaTopic=a-topic startTailingFrom=beginning relinquishLock=true
+java -classpath kafka-tailer-2.1-jar-with-dependencies.jar net.johnpage.kafka.KafkaTailer directoryPath=C:\\iis-logs\\W3SVC1\\ producerPropertiesPath=C:\\iis-logs\\kafka-producer.properties kafkaTopic=a-topic startTailingFrom=beginning relinquishLock=true
 ```
 
 ##Tailing a Single File
 
 ```
-java -classpath kafka-tailer-2.0-jar-with-dependencies.jar net.johnpage.kafka.KafkaTailer filePath=C:\\logs\\a.log producerPropertiesPath=C:\\kafka\\kafka-producer.properties kafkaTopic=a-topic relinquishLock=true
+java -classpath kafka-tailer-2.1-jar-with-dependencies.jar net.johnpage.kafka.KafkaTailer filePath=C:\\logs\\a.log producerPropertiesPath=C:\\kafka\\kafka-producer.properties kafkaTopic=a-topic relinquishLock=true
 ```
 
 ##A Note on Log Rotation
