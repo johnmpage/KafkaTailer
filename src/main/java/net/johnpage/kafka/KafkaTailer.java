@@ -24,6 +24,7 @@ public class KafkaTailer {
   private static String  kafkaTopic;
   private static boolean startTailingFromEnd = true;
   private static boolean relinquishLockBetweenChunks = false;
+  private static TailerThreadManager tailerThreadManager;
   private static int mode;
   public static void main(String args[]) {
     LOGGER.debug("Starting... args[]={}",args);
@@ -31,7 +32,7 @@ public class KafkaTailer {
     try {
       parseArguments(args);
       determineMode();
-      TailerThreadManager tailerThreadManager = getTailerThreadManager();
+      tailerThreadManager = getTailerThreadManager();
       if(mode==MODE__FILE){
         System.out.println("KafkaTailer: filePath = "+filePath);
         tailerThreadManager.startTailingFile(filePath);
@@ -139,5 +140,8 @@ public class KafkaTailer {
   }
   public static void stop(){
     LOGGER.debug("Stopping...");
+    if(tailerThreadManager!=null){
+      tailerThreadManager.shutdown();
+    }
   }
 }

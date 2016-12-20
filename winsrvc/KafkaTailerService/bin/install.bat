@@ -1,0 +1,3 @@
+@echo off
+echo Installing KafkaTailerService...
+KafkaTailerService.exe //IS//KafkaTailerService --Install=D:\KafkaTailerService\bin\KafkaTailerService.exe --Description="Kafka Tailer Service" --Jvm=auto --Classpath=D:\KafkaTailerService\lib\* --StartMode=jvm --StartClass=net.johnpage.kafka.KafkaTailerService --StartMethod=windowsService --StartParams=start;directoryPath=D:\\iis\\logs\\W3SVC1\\;producerPropertiesPath=D:\\KafkaTailerService\\conf\\kafka-producer.properties;kafkaTopic=test-01 --StopMode=jvm --StopClass=net.johnpage.kafka.KafkaTailerService --StopMethod=windowsService --StopParams=stop --LogPath=D:\KafkaTailerService\logs --StdOutput=auto --StdError=auto

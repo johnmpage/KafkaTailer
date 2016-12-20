@@ -48,8 +48,13 @@ public class TailerThreadManager extends TailerListenerAdapter {
       shutdownHookAdded = true;
     }
   }
-  public void shutdown(){
-    LOGGER.debug("Shutting down...");
-    currentTailer.stop();
+  public void shutdown() {
+    LOGGER.info("Shutting down...");
+    if (currentTailer != null) {
+      currentTailer.stop();
+      LOGGER.info("No longer tailing file: " + currentFilePath);
+    } else {
+      LOGGER.info("No tailer currently created.");
+    }
   }
 }
