@@ -1,6 +1,6 @@
 # Kafka Tailer
 
-## Tail the files in any directory and streams to a Kafka topic. 
+## Tail the files in any directory and stream to a Kafka topic. 
 
 Usage:
 
