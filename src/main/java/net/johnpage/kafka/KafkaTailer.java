@@ -66,7 +66,8 @@ public class KafkaTailer {
     kafkaTopic = getArgumentValue(ARG__KAFKA_TOPIC, args);
     if (
       ((filePath == null || filePath.length() < 1) && (directoryPath == null || directoryPath.length() < 1))
-        || producerPropertiesPath == null || producerPropertiesPath.length() < 1 || kafkaTopic == null || kafkaTopic.length() < 1) {
+        || producerPropertiesPath == null || producerPropertiesPath.length() < 1
+        || kafkaTopic == null || kafkaTopic.length() < 1) {
       printUsageInstructions();
       throw new InvalidParameterException("A parameter is missing.");
     }

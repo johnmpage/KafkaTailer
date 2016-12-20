@@ -9,12 +9,9 @@ public class TailerThreadManager extends TailerListenerAdapter {
   private final static Logger LOGGER = LoggerFactory.getLogger(TailerThreadManager.class);
   private Tailer currentTailer;
   private String currentFilePath;
-  TailerFactory tailorFactory;
+  private TailerFactory tailorFactory;
   private boolean shutdownHookAdded = false;
   public TailerThreadManager(TailerFactory tailorFactory) {
-    this.tailorFactory = tailorFactory;
-  }
-  public void setTailorFactory(TailerFactory tailorFactory) {
     this.tailorFactory = tailorFactory;
   }
   public void startTailingFile(String newfilePath) {
@@ -54,7 +51,7 @@ public class TailerThreadManager extends TailerListenerAdapter {
       currentTailer.stop();
       LOGGER.info("No longer tailing file: " + currentFilePath);
     } else {
-      LOGGER.info("No tailer currently created.");
+      LOGGER.info("No tailer currently exists.");
     }
   }
 }
