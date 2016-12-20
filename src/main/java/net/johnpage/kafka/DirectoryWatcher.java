@@ -24,7 +24,7 @@ public class DirectoryWatcher {
     WatchKey watchKey=null;
     try {
       watchService  = FileSystems.getDefault().newWatchService();
-      watchKey = directoryPath.register(watchService, ENTRY_CREATE);
+      watchKey = directoryPath.register(watchService, StandardWatchEventKinds.ENTRY_CREATE);
     } catch (IOException x) {
       LOGGER.error("IOException setting up startWatching.",x);
       System.err.println(x);
