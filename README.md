@@ -75,6 +75,7 @@ Currently, if KafkaTailer attempts to read a file and it does not exist, KafkaTa
 ## Built using:
 * [Apache Commons IO Tailer 2.5](https://commons.apache.org/proper/commons-io/)
 * [Apache Kafka Producer 0.10](https://kafka.apache.org/)
+* [Apache Commons Daemon](https://commons.apache.org/proper/commons-daemon/)
 
 ## Kafka Version
 Tested with Kafka 0.10. Should be backwards compatible with 0.90 and 0.82. These 3 versions rely on the following initialization of the Producer:
@@ -84,6 +85,9 @@ new KafkaProducer(Properties properties)
 ```
 
 Version-appropriate properties will need to be used.
+
+## Windows Service
+The skeleton of a Windows service is included in the *winsrvc* directory. The *install.bat* script and the *kafka-producer.properties* file require customization to reflect your environment.
 
 ## Building
 You may choose to build KafkaTailer yourself, either to embed a different version of the Kafka client libraries or for security reasons. If you you choose to build KafkaTailer yourself, a jar with it's dependencies embedded requires a special Maven invocation.
